@@ -25,30 +25,51 @@
   lctl lmet lalt           spc              ralt   rctl  left      down  rght
 )
 
-(defalias
- cesc (tap-next esc lctl)
- arrow (layer-toggle arrows)
+ ;; Make left-control esc on tap, control on hold
+(defalias cesc (tap-next esc lctl))
+
+ ;; navigatio layer
+(defalias 
+ nav (layer-toggle navigation)
+ tnav (tap-hold 200 a @nav)
+)
+ ;; symbol layer
+(defalias 
  symbol (layer-toggle symbols)
- tarrow (tap-hold 200 f @arrow)
  tsy (tap-hold 200 spc @symbol)
+)
+
+;; Move window to the monitor to the left
+(defalias wle (around lmet (around lsft left)))
+
+;; Move window to the monitor to the right
+(defalias  wrh (around lmet (around lsft rght)))
+
+;; Switch between two most recent widows
+(defalias swi (tap-macro A-esc))
+
+(defalias 
+ kil A-f4
+ max A-f10
 )
 
 (deflayer firstlayer 
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12    del
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  home
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     pgup
-  @cesc a    s    d   @tarrow   g    h    j    k    l    ;    '    ret   pgdn
+  @cesc @tnav    s    d    f    g    h    j    k    l    ;    '    ret   pgdn
   lsft z    x    c    v    b    n    m    ,    .    /    rsft      up    end
   lctl lmet lalt           @tsy             ralt   rctl  left      down  rght
+
 )
 
-(deflayer arrows 
-  _  _   _    _    _    _    _       _         _      _    _    _    _        _
-  _  _   _    _    _    _    _       _         _      _    _    _    _    _   _
-  _  _   _    _    _    _    _     compose   home    end   _    _    _    _   _
-  _  _   _    _    _    _    left   down     up    right   _    _    _        _
-  _      _    _    _    _    _       _         _      _    _    _    _    _   _
-  _  _   _                        _                        _    _    _    _   _
+(deflayer navigation 
+  _  _   _    _    _    _    _       _      _      _      _     _    _        _
+  _  _   _    _    _    _    _       _      _      _      _     _    _    _   _
+  _  _   _    _    _    _    _     home    pgdn   pgup   end    _    _    _   _
+  _  _  lmet  _  @swi   _   left   down     up   right    _     _    _        _
+  _      _    _  cmp    _    _     @wle    @max   @kil    _   @wrh   _    _   _
+  _  _   _                        _                       _     _    _    _   _
 )
 
 (deflayer symbols
@@ -59,4 +80,14 @@
   _  _   :    *    +    _    @    &    ^    ~    _    _    _    _
   _  _   _                        _              _    _    _    _   _
 )
+
+(deflayer empty 
+  _  _   _    _    _    _    _     _     _     _    _    _    _         _
+  _  _   _    _    _    _    _     _     _     _    _    _    _    _    _
+  _  _   _    _    _    _    _     _     _     _    _    _    _    _    _
+  _  _   _    _    _    _    _     _     _     _    _    _    _         _
+  _      _    _    _    _    _     _     _     _    _    _    _    _    _
+  _  _   _                        _                 _    _    _    _   _
+)
+
 
