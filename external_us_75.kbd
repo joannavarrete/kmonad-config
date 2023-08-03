@@ -38,6 +38,11 @@
  symbol (layer-toggle symbols)
  tsy (tap-hold 200 spc @symbol)
 )
+;; intellij layer
+(defalias
+ lintellij (layer-toggle intellij)
+ tide (tap-hold 200 s @lintellij)
+)
 
 ;; Move window to the monitor to the left
 (defalias wle (around lmet (around lsft left)))
@@ -48,17 +53,42 @@
 ;; Switch between two most recent widows
 (defalias swi (tap-macro A-esc))
 
+;; Sitch between two most recetn windows of an application
+(defalias cip A-f6)
+
 (defalias 
  kil A-f4
  max A-f10
 )
 
+;; intellij
+;; navigation Go Back
+(defalias bck A-S-left)
+
+;; navigation Go Forward
+(defalias fwd A-S-rght)
+
+;; Go To Type Declaration
+(defalias gttd C-S-b)
+
+;; Go to
+(defalias gt C-b)
+
+;; Run Tests
+(defalias rtest C-S-f10)
+
+;; Move tab to opposite split 
+(defalias oppo C-A-S-q)
+
+;; Maximice and Normalice Splits 
+(defalias maxSp C-A-S-f9)
+
 (deflayer firstlayer 
-  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12    del
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  home
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     pgup
-  @cesc @tnav    s    d    f    g    h    j    k    l    ;    '    ret   pgdn
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft      up    end
+  esc  f1   f2    f3    f4   f5   f6   f7   f8   f9   f10  f11  f12    del
+  grv  1    2     3     4    5    6    7    8    9    0    -    =    bspc  home
+  tab  q    w     e     r    t    y    u    i    o    p    [    ]    \     pgup
+  @cesc   @tnav  @tide  d    f    g    h    j    k    l    ;    '    ret   pgdn
+  lsft z    x     c     v    b    n    m    ,    .    /    rsft      up    end
   lctl lmet lalt           @tsy             ralt   rctl  left      down  rght
 
 )
@@ -67,7 +97,7 @@
   _  _   _    _    _    _    _       _      _      _      _     _    _        _
   _  _   _    _    _    _    _       _      _      _      _     _    _    _   _
   _  _   _    _    _    _    _     home    pgdn   pgup   end    _    _    _   _
-  _  _  lmet  _  @swi   _   left   down     up   right    _     _    _        _
+  _  _  lmet @cip  @swi   _   left   down     up   right    _     _    _        _
   _      _    _  cmp    _    _     @wle    @max   @kil    _   @wrh   _    _   _
   _  _   _                        _                       _     _    _    _   _
 )
@@ -80,6 +110,17 @@
   _  _   :    *    +    _    @    &    ^    ~    _    _    _    _
   _  _   _                        _              _    _    _    _   _
 )
+
+
+(deflayer intellij 
+  _  _   _    _     _     _      _     _     _     _    _    _    _         _
+  _  _   _    _     _     _      _     _     _     _    _    _    _    _    _
+  _  _   _    f2    _  @rtest    _     _     _   @oppo  _    _    _    _    _
+  _  _   _  @gttd  @gt    _      _   @bck  @fwd    _    _    _    _         _
+  _      _    _     _     _      _     _  @maxSp   _    _    _    _    _    _
+  _  _   _                        _                _    _    _    _   _
+)
+
 
 (deflayer empty 
   _  _   _    _    _    _    _     _     _     _    _    _    _         _
