@@ -25,7 +25,7 @@
   lctl lmet lalt           spc              ralt   rctl  left      down  rght
 )
 
- ;; Make left-control esc on tap, control on hold
+;; Make left-control esc on tap, control on hold
 (defalias cesc (tap-next esc lctl))
 
  ;; navigatio layer
@@ -78,10 +78,16 @@
 (defalias rtest C-S-f10)
 
 ;; Move tab to opposite split 
-(defalias oppo C-A-S-q)
+(defalias mppo C-A-S-q)
+
+;; Move cursor to opposite split 
+(defalias cppo C-A-S-o)
 
 ;; Maximice and Normalice Splits 
 (defalias maxSp C-A-S-f9)
+
+;; Rename variable
+(defalias ren S-f6)
 
 (deflayer firstlayer 
   esc  f1   f2    f3    f4   f5   f6   f7   f8   f9   f10  f11  f12    del
@@ -103,7 +109,7 @@
 )
 
 (deflayer symbols
-  _  _   _    _    _    _    _    _    _    _    _    _    _        _
+  _  _   _    _    _    _    _    _    _    _    _    _    _    _
   _  _   _    _    _    _    _    _    _    _    _    _    _    _   _
   _  _   <    $    >    _    _    [    \_   ]    _    _    _    _   _
   -  \   \(   "    \)   #    %    {    =    }    ;    |    _    _
@@ -111,11 +117,10 @@
   _  _   _                        _              _    _    _    _   _
 )
 
-
 (deflayer intellij 
   _  _   _    _     _     _      _     _     _     _    _    _    _         _
   _  _   _    _     _     _      _     _     _     _    _    _    _    _    _
-  _  _   _    f2    _  @rtest    _     _     _   @oppo  _    _    _    _    _
+  _  _   _    f2    @ren  @rtest    _     _     _   @cppo  @mppo    _    _    _    _
   _  _   _  @gttd  @gt    _      _   @bck  @fwd    _    _    _    _         _
   _      _    _     _     _      _     _  @maxSp   _    _    _    _    _    _
   _  _   _                        _                _    _    _    _   _

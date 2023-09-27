@@ -25,37 +25,104 @@
   lctl lmet lalt           spc              ralt   rctl  left      down  rght
 )
 
-(defalias
- cesc (tap-next esc lctl)
- arrow (layer-toggle arrows)
+;; Make left-control esc on tap, control on hold
+(defalias cesc (tap-next esc lctl))
+
+ ;; navigatio layer
+(defalias 
+ nav (layer-toggle navigation)
+ tnav (tap-hold 200 a @nav)
+)
+ ;; symbol layer
+(defalias 
  symbol (layer-toggle symbols)
- tarrow (tap-hold 200 f @arrow)
  tsy (tap-hold 200 spc @symbol)
 )
+;; intellij layer
+(defalias
+ lintellij (layer-toggle intellij)
+ tide (tap-hold 200 s @lintellij)
+)
+
+;; Move window to the monitor to the left
+(defalias wle (around lmet (around lsft left)))
+
+;; Move window to the monitor to the right
+(defalias  wrh (around lmet (around lsft rght)))
+
+;; Switch between two most recent widows
+(defalias swi (tap-macro A-esc))
+
+;; Sitch between two most recetn windows of an application
+(defalias cip A-f6)
+
+(defalias 
+ kil A-f4
+ max A-f10
+)
+
+;; intellij
+;; navigation Go Back
+(defalias bck A-S-left)
+
+;; navigation Go Forward
+(defalias fwd A-S-rght)
+
+;; Go To Type Declaration
+(defalias gttd C-S-b)
+
+;; Go to
+(defalias gt C-b)
+
+;; Run Tests
+(defalias rtest C-S-f10)
+
+;; Move tab to opposite split 
+(defalias mppo C-A-S-q)
+
+;; Move cursor to opposite split 
+(defalias cppo C-A-S-o)
+
+;; Maximice and Normalice Splits 
+(defalias maxSp C-A-S-f9)
+
+;; Rename variable
+(defalias ren S-f6)
 
 (deflayer firstlayer
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12     del
   grv  1    2    3    4    5    6    7    8    9    0    -    =      bspc  
   tab  q    w    e    r    t    y    u    i    o    p    [    ]        
-  @cesc a    s    d  @tarrow    g    h    j    k    l    ;    '    \       ret   
+  @cesc @tnav   @tide    d  f    g    h    j    k    l    ;    '    \       ret   
   lsft lsft z    x    c    v    b    n    m    ,    .    /    rsft  
   lctl lmet lalt           @tsy              ralt   rctl  left      down  rght
 )
 
-(deflayer arrows 
+(deflayer navigation 
   _  _   _    _    _    _    _       _         _      _    _    _    _    _
   _  _   _    _    _    _    _       _         _      _    _    _    _    _
-  _  _   _    _    _    _    _     compose   home    end   _    _         _
-  _  _   _    _    _    _    left   down     up    right   _    _    _    _
-  _  _   _    _    _    _     _       _      _   _    _    _    _   
+  _  _   _    _    _    _    _     home       pgdn   pgup   end    _         _
+  _  _ lmet  @cip @swi   _       left   down     up    right   _    _    _    _
+  _  _   _    _    cmp    _     _      @wle    @max   @kil    _    @wrh    _   
   _  _   _                        _                        _    _    _    _   _
 )
 
 (deflayer symbols
   _  _   _    _    _    _    _    _    _    _    _    _    _    _
-  _  _   _    _    _    _    _    _    _    _    _    _    _    _   
-  _  _   <    $    >    _    _    [    \_   ]    _    _         _   
+  _  _   _    _    _    _    _    _    _    _    _    _    _    _
+  _  _   <    $    >    _    _    [    \_   ]    _    _         _
   -  \   \(   "    \)   #    %    {    =    }    ;    |    _    _
   _ _  _   :    *    +    _    @    &    ^    ~    _    _    
   _  _   _                        _              _    _    _    _   _
 )
+
+(deflayer intellij 
+  _  _   _    _    _    _    _       _         _      _    _    _    _    _
+  _  _   _    _    _    _    _       _         _      _    _    _    _    _
+  _  _   _    f2   @ren    @rtest    _         _      _   @cppo  @mppo      _         _
+  _  _   _  @gttd @gt   _       _   @bck     @fwd    _   _    _    _    _
+  _  _   _    _    _    _     _       _      @maxSp   _    _    _    _   
+  _  _   _                        _                        _    _    _    _   _
+)
+
+
