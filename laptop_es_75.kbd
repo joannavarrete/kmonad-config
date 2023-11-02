@@ -80,7 +80,6 @@
 ;; Run Tests
 (defalias rtest C-S-f10)
 
-
 ;; Move tab to opposite split 
 (defalias mppo C-A-S-q)
 

@@ -74,6 +74,9 @@
 ;; Go to
 (defalias gt C-b)
 
+;; Go to test class
+(defalias gtt C-S-T)
+
 ;; Run Tests
 (defalias rtest C-S-f10)
 
@@ -91,6 +94,9 @@
 
 ;; Rename variable
 (defalias ren S-f6)
+
+;; Clean screen
+(defalias cln C-S-f12)
 
 (deflayer firstlayer 
   esc  f1   f2    f3    f4   f5   f6   f7   f8   f9   f10  f11  f12    del
@@ -124,8 +130,8 @@
   _  _   _    _     _     _      _     _     _     _    _    _    _         _
   _  _   _    _     _     _      _     _     _     _    _    _    _    _    _
   _  _   _    f2    @ren  @rtest    _     _     @spri   @cppo  @mppo    _    _    _    _
-  _  _   _  @gttd  @gt    _      _   @bck  @fwd    _    _    _    _         _
-  _      _    _     _     _      _     _  @maxSp   _    _    _    _    _    _
+  _  _   _  @gttd  @gt    @gtt      _   @bck  @fwd    _    _    _    _         _
+  _      _    _    @cln     _      _     _  @maxSp   _    _    _    _    _    _
   _  _   _                        _                _    _    _    _   _
 )
 
