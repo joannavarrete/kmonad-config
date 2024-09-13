@@ -20,7 +20,7 @@
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   lctl a    s    d    f    g    h    j    k    l    ;    '         ret
   lsft z    x    c    v    b    n    m    ,    .    /              rsft
-  caps lmet lalt           spc              ralt   rctl menu
+  lctl lmet lalt           spc              ralt   rctl menu
 )
 
 ;; Make left-control esc on tap, control on hold
@@ -30,6 +30,11 @@
 (defalias 
  nav (layer-toggle navigation)
  tnav (tap-hold 200 a @nav)
+)
+
+(defalias 
+ efe (layer-toggle efes)
+ tefe (tap-hold 200 f @efe)
 )
 
 ;; Symbol layer
@@ -43,6 +48,13 @@
  lintellij (layer-toggle intellij)
  tide (tap-hold 200 s @lintellij)
 )
+
+;; Intellij numbers
+(defalias
+ lnumbers (layer-toggle numbers)
+ tnum (tap-hold 200 d @lnumbers)
+)
+
 
 ;; Move window to the monitor to the left
 (defalias wle (around lmet (around lsft left)))
@@ -106,9 +118,25 @@
 (deflayer firstlayer 
   esc  1    2     3     4    5    6    7    8    9    0    -    =    bspc
   tab  q    w     e     r    t    y    u    i    o    p    [    ]    \
-  @cesc   @tnav  @tide  d    f    g    h    j    k    l    ;    '    ret
+  @cesc   @tnav  @tide  @tnum    @tefe    g    h    j    k    l    ;    '    ret
   lsft z    x     c     v    b    n    m    ,    .    /              rsft
-  caps lmet lalt           @tsy             ralt   rctl menu
+  lctl lmet lalt           @tsy             ralt   rctl menu
+)
+
+(deflayer numbers 
+  esc  1    2     3     4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w     e     r    t    y    1    2    3    4    [    ]    \
+  lctl a    s     d     f    g    h    5    6    7    8    '    ret
+  lsft   z    x     c     v    b    9    0    ,    .    /              rsft
+  lctl lmet lalt           spc             ralt   rctl menu
+)
+
+(deflayer efes 
+  esc  1    2     3     4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w     e     r    t    y    f1    f2   f3    f4    [    ]    \
+  lctl a    s     d     f    g    h    f5    f6    f7    f8    '    ret
+  lsft   z    x     c     v    b    f9    f10    f11    f12    /              rsft
+  lctl lmet lalt           spc             ralt   rctl menu
 )
 
 (deflayer navigation 
